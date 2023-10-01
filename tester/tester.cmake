@@ -21,5 +21,7 @@ function(exec_check)
     endif()
 endfunction()
 
-exec_check(${IMAGE_TRANSFORMER} ${TEST_DIR}/input.bmp ${TEST_DIR}/output.bmp)
+file(STRINGS ${TEST_DIR}/angle ANGLE)
+file(REMOVE ${TEST_DIR}/output.bmp)
+exec_check(${IMAGE_TRANSFORMER} ${TEST_DIR}/input.bmp ${TEST_DIR}/output.bmp ${ANGLE})
 exec_check(${IMAGE_MATCHER} ${TEST_DIR}/output.bmp ${TEST_DIR}/output_expected.bmp)

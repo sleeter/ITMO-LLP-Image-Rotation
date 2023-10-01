@@ -130,6 +130,7 @@ define make-test-rule
 TST_NAME.$(1) := $$(notdir $(1))
 
 TST_INPUT.$(1) := $(1)/input.bmp
+TST_ANGLE.$(1) := $(shell cat $(1)/angle)
 TST_OUTPUT.$(1) := $(OBJDIR.tester)/$$(TST_NAME.$(1)).bmp
 TST_EXPECTED.$(1) := $(1)/output_expected.bmp
 
@@ -141,7 +142,7 @@ test: test-$$(TST_NAME.$(1))
 
 test-$$(TST_NAME.$(1)): build-main build-tester
 	$(TESTER_SCRIPT) $$(TST_NAME.$(1)) \
-		--main-cmd '$(TARGET.main) $$(TST_INPUT.$(1)) $$(TST_OUTPUT.$(1))' \
+		--main-cmd '$(TARGET.main) $$(TST_INPUT.$(1)) $$(TST_OUTPUT.$(1)) $$(TST_ANGLE.$(1))' \
 		--tester-cmd '$(TARGET.tester) $$(TST_OUTPUT.$(1)) $$(TST_EXPECTED.$(1))' \
 		--log-dir '$(OBJDIR.tester)'
 
