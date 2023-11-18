@@ -31,7 +31,7 @@ BMP файл состоит из заголовка и растрового ма
 ```c
 // Описание для gcc и clang
 #include  <stdint.h>
-struct bmp_header __attribute__((packed))
+struct __attribute__((packed)) bmp_header
 {
         uint16_t bfType;
         uint32_t  bfileSize;
