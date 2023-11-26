@@ -24,7 +24,7 @@ enum angle_status valid_angle(const int16_t* angles, const size_t angles_size, i
 }
 
 size_t rotate_count(int16_t angle) {
-    angle = -angle;
+    angle = (int16_t)-angle;
     if(angle < 0) angle += 360;
     return angle / 90;
 }
