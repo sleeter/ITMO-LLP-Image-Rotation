@@ -7,7 +7,12 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#define ANGLE_SIZE 4
 
+int print_error(char* str) {
+    fprintf(stderr, "%s", str);
+    return 1;
+}
 
 int main( int argc, char** argv ) {
     if (argc != 4) {
@@ -15,7 +20,7 @@ int main( int argc, char** argv ) {
         return 1;
     }
     int16_t angle = (int16_t) atoi(argv[3]);
-    const size_t angle_size = 4;
+    const size_t angle_size = ANGLE_SIZE;
     const int16_t angles[] = {0,90, 180, 270};
     if(valid_angle(angles, angle_size, angle) != VALID) {
         fprintf(stderr, "Angle is not valid, use: {0, 90, 180, 270, -90, -180, -270}.\n");
